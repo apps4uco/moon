@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="moon">
+  <bannerLeft>
+    <name>apps4u.co</name>
+    <src>logo.gif</src>
+    <href>http://www.apps4u.co/</href>
+  </bannerLeft>
+  <bannerRight>
+    <src>logo.gif</src>
+  </bannerRight>
+  <body>
+    <links>  
+      <item name="moon apps4u" href="http://www.apps4u.co/products/moon/"/>
+    </links>
+
+    <menu name="moon apps4u">
+      <item name="Introduction" href="intro.html"/>
+      <item name="X3d" href="x3d.html"/>
+      <item name="Install" href="install.html"/>
+      <item name="FAQ" href="faq.html"/>     
+    </menu>
+
+    <menu ref="reports"/>
+
+  </body>
+</project>

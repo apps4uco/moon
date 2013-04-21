@@ -1,0 +1,24 @@
+X3d
+
+ The 3d graphics were developed using x3d.
+ 
+X3dom
+
+ To enable the display of the x3d  x3dom is used to render the 3d model without the need of installing software
+in your browser. {{{http://www.x3dom.org/}X3dom}} requires that javascript be enabled and also that your browser supports WebGl (see the next section for browsers).
+X3dom is still in development, if you encounter any problems refresh the webpage in your browser and that normally fixes the problem.
+We will update Moon Apps4u to use newer versions of x3dom when they are released.
+
+ {{{http://www.x3dom.org/?page_id=9}Browsers supporting x3dom}} Firefox, Safari on Mac, IOS, Firefox mobile for Android.
+ 
+ {{{http://www.x3dom.org/check/}Check to see if your browser supports x3d}} 
+
+WebGL
+
+ The project is based on WebGL
+ 
+ {{{http://caniuse.com/webgl}browsers supporting Web GL}}
+ 
+ {{{http://www.khronos.org/webgl/wiki_1_15/index.php/Getting_a_WebGL_Implementation}Find a WebGL enabled browser}}
+ 
+ You can {{{http://get.webgl.org/}check to see if your browser supports WebGL}}. If you see a spinning cube then you do.

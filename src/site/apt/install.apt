@@ -1,0 +1,3 @@
+Postgresql and Postgis
+ 
+ To enable the search funtionality the postgresql database with postgis extensions is required. 
