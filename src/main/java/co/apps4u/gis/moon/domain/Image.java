@@ -29,6 +29,7 @@ public class Image {
 	String image_link;
 	String  kml_link;
 	String  schools;
+	int itemId;
 	
 	@JsonSerialize(using=JsonCustom.class)
 	Geometry nadir;
@@ -284,6 +285,18 @@ public class Image {
 	public String toString()
 	{
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+	}
+	/**
+	 * @return the itemId
+	 */
+	public int getItemId() {
+		return itemId;
+	}
+	/**
+	 * @param itemId the itemId to set
+	 */
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 	
 //	public String toJsonString()

@@ -2,8 +2,13 @@ Introduction
 
  Moon Apps4u is designed for mobile browsers all the way up to desktop browsers.
  
- The project is based on WebGL see {{{./x3d.html}check}} if your device and browser have support. 
-You should just need to point your browser to moon.xhtml and thats it, no installation necessary.
+ The project is based on WebGL see {{{./x3d.html}check}} if your device and browser have support.
+ 
+ {{{http://developer.sonymobile.com/2011/11/29/xperia-phones-first-to-support-webgl/}Sony Xperia phones}} 
+
+ In most modern browers you should just need to point your browser to moon.xhtml and thats it, no installation necessary.
+ 
+ {{{http://iewebgl.com/}IEWebGL}} is a plugin for Microsoft Internet Explorer web browser, that adds support for WebGL - modern web 3D graphics standard. 
  
  The {{{./install.html}installation instructions}} provided are not for end users they are for service providers in order to host the web application.
 

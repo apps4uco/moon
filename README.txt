@@ -47,6 +47,34 @@ schools text,
 id serial primary key
 );  
 
+download.sh:
+
+for file in "4/2012-11-15/2012-11-28" "4/2012-11-01/2012-11-14" "4/2012-10-18/2012-10-31" "3/2012-05-18/2012-05-28" "3/2012-05-04/2012-05-18" "3/2012-04-19/2012-05-04" "3/2012-04-04/2012-04-18" "3/2012-03-22/2012-04-04" "3/2012-03-15/2012-03-21"
+do
+filename=$(echo $file | tr / _ | tr -d -)
+wget -O $filename.csv https://moonkam.ucsd.edu/image_gallery/$file/data
+done
+
+
+Pre process data
+sed -i -e's/""//g' *.csv
+
+Copy to temp so that postgres has permision to load the data:
+
+cp *.csv /tmp
+
+Load data:
+
+sql.sh > /tmp/load.sql
+
+for file in "4/2012-11-15/2012-11-28" "4/2012-11-01/2012-11-14" "4/2012-10-18/2012-10-31" "3/2012-05-18/2012-05-28" "3/2012-05-04/2012-05-18" "3/2012-04-19/2012-05-04" "3/2012-04-04/2012-04-18" "3/2012-03-22/2012-04-04" "3/2012-03-15/2012-03-21"
+do
+filename=$(echo $file | tr / _ | tr -d -)
+echo "copy image (image_id,center_lng,center_lat,nadir_lng,nadir_lat,corner1_lng,corner1_lat,corner2_lng,corner2_lat,corner3_lng,corner3_lat,corner4_lng,corner4_lat,altitude,lens_size,frame_width,frame_height,taken_utc,mission_name,spacecraft,camera_dir,orbit_num,image_page,image_link,kml_link,schools) from '/tmp/$filename.csv' delimiter ',' CSV HEADER;"
+done
+
+\i /tmp/load.sql
+
 drop table crater;
 create table crater(
 name text,
@@ -123,7 +151,7 @@ copy crater(name, diam, latitude, longitude, radiuskm, radiusm, radiusdeg, rimhe
 
 
 
-UPDATE image SET nadir = ST_GeogFromText('SRID=4326;POINT(' || nadir_lng || ' ' || nadir_lat || ')');
+
 ALTER TABLE image ADD COLUMN nadir geography(POINT,4326);
 CREATE INDEX nadir_index ON image USING GIST (nadir);
 
@@ -136,10 +164,19 @@ CREATE INDEX corner2_index ON image USING GIST (corner2);
 CREATE INDEX corner3_index ON image USING GIST (corner3);
 CREATE INDEX corner4_index ON image USING GIST (corner4);
 
+UPDATE image SET nadir = ST_GeogFromText('SRID=4326;POINT(' || nadir_lng || ' ' || nadir_lat || ')') where nadir_lng is not null and nadir_lat is not null;
 UPDATE image SET corner1 = ST_GeogFromText('SRID=4326;POINT(' || corner1_lng || ' ' || corner1_lat || ')') where corner1_lat is not null and corner1_lng is not null;
 UPDATE image SET corner2 = ST_GeogFromText('SRID=4326;POINT(' || corner2_lng || ' ' || corner2_lat || ')') where corner2_lat is not null and corner2_lng is not null;
 UPDATE image SET corner3 = ST_GeogFromText('SRID=4326;POINT(' || corner3_lng || ' ' || corner3_lat || ')') where corner3_lat is not null and corner3_lng is not null;
 UPDATE image SET corner4 = ST_GeogFromText('SRID=4326;POINT(' || corner4_lng || ' ' || corner4_lat || ')') where corner4_lat is not null and corner4_lng is not null;
+
+curl -v 'http://localhost:8888/kam/?lat=0&long=0'
+
+Data processing
+
+alter table image add column itemId int;
+update image set itemId=substring(image_page, '[0-9]+$')::INTEGER;
+
 
 
 ALTER TABLE crater ADD COLUMN center geography(POINT,4326);
