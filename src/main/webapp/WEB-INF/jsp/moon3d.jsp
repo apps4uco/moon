@@ -63,17 +63,14 @@
 		<label for="object">Object</label><input type="text" name="object" id="object"/>	
 		<label for="lat">Latitude (N-S)</label><input type="text" name="lat" id="lat"/>	
 		<label for="lng">Longitude (E-W)</label><input type="text" name="lng" id="lng"/>	
-		<label for="d">Distance (m)</label><input type="text" name="d" id="d" value="100000"/>
+		<label for="d">Distance (m)</label><input style="width:5em;" type="text" name="d" id="d" value="100000"/>
+		<label for="limit">Limit</label><input style="width:3em;" type="text" name="limit" id="limit" value="10"/>
+		<label for="offset">Offset</label><input style="width:3em;" type="text" name="offset" id="offset" value="0"/>
+		
 		<input type="button" id="search" value="Search"/>
 		</form>
 		
-		<div style="display:none">
-		<span id="status">Status</span>
-		<span id="nav_mode_info">Nav mode</span>
-		<span id="ab_info">View</span>
-		<span id="speed">Speed</span>
-		Position <span id="pos">Pos</span>
-		</div>
+		
 		<%-- 
 		 <div id="sliderContainer">
             <ul>
@@ -103,9 +100,11 @@
         <option value="/image/MoonMap_2500x1250.jpg" selected="selected">Default Visual</option>
          <option value="/image/topogrd2.GIF">Gravity Overlay Topo</option>
           <option value="/image/fairgrd2.GIF">Gravity Overlay Fair</option>
-           <option value="/image/bouggrd.GIF">Gravity Overlay Boug</option>      
+           <option value="/image/bouggrd.GIF">Gravity Overlay Boug</option>  
+           <%--    
            <option value="/image/land_ocean_ice_2048.jpg">Earth</option>
            <option value="/image/EarthNight_2500x1250.jpg">Earth Night</option>
+            --%>
         </select>
         <label for="headlight">Headlight</label>
         <input type="checkbox" id="headlight" value="Headlight" />
@@ -270,6 +269,12 @@ int n=8;
 </X3D>
 	
 	<div id="results" style="clear:both;">Results</div>
+	
+		<span id="status">Status</span>
+		<span id="nav_mode_info">Nav mode</span>
+		<span id="ab_info">View</span>
+		<span id="speed">Speed</span>
+		Position <span id="pos">Pos</span>
 		
 	<script type="text/javascript" src="/js/x3dom-full.js"></script>
 	<script type="text/javascript" src="/js/x3domExtra.js"></script>

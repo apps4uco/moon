@@ -18,7 +18,7 @@ function setSunlight(on)
 
 function send() {
     var requestUrl =
-        "kam/?lat="+ $('#lat').val() +"&lng=" + $('#lng').val()+"&d=" + $('#d').val();
+        "kam/?lat="+ $('#lat').val() +"&lng=" + $('#lng').val()+"&d=" + $('#d').val()+"&limit=" + $('#limit').val()+"&offset=" + $('#offset').val();
     log(requestUrl); 
     
 //  $.ajax({
